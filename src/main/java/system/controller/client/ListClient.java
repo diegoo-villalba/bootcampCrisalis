@@ -78,5 +78,15 @@ public class ListClient {
 		//Enviamos al formulario
 		return "formularioCliente";
 	}
+	
+	@GetMapping("/eliminarCliente")
+	public String eliminarCliente(@RequestParam("clienteId") int Id) {
+		
+		//Eliminamos el cliente cuyo ID pasamos por parámetro
+		clienteDAO.eliminarCiente(Id);
+		
+		//Enviamos al formulario
+		return "redirect:/clientes/lista";
+	}
 
 }

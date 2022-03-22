@@ -18,23 +18,37 @@
 		<th>Apellido</th>
 		<th>DNI</th>
 		<th>Modificar</th>
+		<th>Eliminar</th>
 	</tr>
 	
 	<c:forEach var="clienteTemp" items="${clientes }">
 	
+	<!-- LINK ACTUALIZAR REGISTRO -->
 	<!-- var tiene que coincidir con href de <a> -->
 	<c:url var="linkActualizar" value="/clientes/muestraFormularioActualizarCliente">
 	
-	<!-- Para pasarle a "value" el ID del registro a modificar -->
-	<c:param name="clienteId" value="${clienteTemp.id }"/>
+		<!-- Para pasarle a "value" el ID del registro a modificar -->
+		<c:param name="clienteId" value="${clienteTemp.id }"/>
 	
 	</c:url>
+	<!-- ---------------------- -->
+	
+	<!-- LINK ELIMINAR REGISTRO -->
+	<!-- var tiene que coincidir con href de <a> -->
+	<c:url var="linkEliminar" value="/clientes/eliminarCliente">
+	
+		<!-- Para pasarle a "value" el ID del registro a modificar -->
+		<c:param name="clienteId" value="${clienteTemp.id }"/>
+	
+	</c:url>
+	<!-- ---------------------- -->
 	
 	<tr>
 		<td>${clienteTemp.nombre }</td>
 		<td>${clienteTemp.apellido }</td>
 		<td>${clienteTemp.dni }</td>
 		<td><a href="${linkActualizar }"><input type="button" value="Modificar"/></a></td> <!-- Lo traemos a cada registro de la BBDD por ID -->
+		<td><a href="${linkEliminar }"><input type="button" value="Eliminar" onclick="if(!(confirm('¡¡Atención!! Estas por eliminar un registro ¿Estas seguro?'))) return false"/></a></td>
 	
 	</tr>
 	

@@ -50,7 +50,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 		Session mySession = sessionFactory.getCurrentSession();
 		
 		//Insercion del registro
-		//mySession.save(unCliente);
 		mySession.saveOrUpdate(unCliente);
 		
 	}
@@ -69,6 +68,27 @@ public class ClienteDAOImpl implements ClienteDAO {
 		Cliente unCliente = mySession.get(Cliente.class, id);
 		
 		return unCliente;
+	}
+	
+	
+	//Metodo que elimina el registro en la BBDD
+	@Override
+	@Transactional
+	public void eliminarCiente(int id) {
+		
+		//Obtenemos la sesión
+		Session mySession = sessionFactory.getCurrentSession();
+				
+		//Borrar el cliente de la BBDD usando su ID como criterio
+		//Ejecutamos una query de tipo DELETE (Query Class)
+		Query query = mySession.createQuery("delete from Cliente where id=:idCliente");
+		
+		//Insertamos el ID que recibimos por parámetro dentro de la query con .setParameter()		
+		query.setParameter("idCliente", id);
+		
+		//Ejecutamos query
+		query.executeUpdate();
+		
 	}
 
 }
