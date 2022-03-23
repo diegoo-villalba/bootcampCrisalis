@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<h1>LLEGAMOS A LA LISTA DE LOS CLIENTES</h1>
+<h1>LISTA DE LOS CLIENTES</h1>
 
 <table>
 	<tr>
