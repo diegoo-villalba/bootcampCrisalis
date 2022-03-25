@@ -1,6 +1,5 @@
 package system.model;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,9 +11,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import system.utils.ItemVenta;
+
 @Entity
 @Table(name = "servicio")
-public class Servicio {
+public class Servicio implements ItemVenta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

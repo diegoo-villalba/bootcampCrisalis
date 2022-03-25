@@ -7,9 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import system.utils.ItemVenta;
+
 @Entity
 @Table(name = "producto")
-public class Producto {
+public class Producto implements ItemVenta{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // En nuestra BBDD, ID es nuestros campo clave

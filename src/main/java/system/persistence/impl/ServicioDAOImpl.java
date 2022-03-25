@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import system.model.Producto;
 import system.model.Servicio;
 import system.persistence.ServicioDAO;
 
@@ -21,8 +20,6 @@ public class ServicioDAOImpl implements ServicioDAO {
 	 */
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
 	
 	@Override
 	@Transactional //Anotacion que nos permite prescindir de crear la transaccion y hacer el commit y/o rollback
