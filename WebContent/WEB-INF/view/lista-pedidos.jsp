@@ -10,15 +10,12 @@
 </head>
 <body>
 
-<h1>LISTA DE LOS PEDIDOS</h1>
+<h1>LISTA DE PEDIDOS</h1>
 
 <table>
 	<tr>
-		<th>Numero de Pedido</th>
-		<th>Costo Total</th>
-		<th>Fecha</th>
-		<th>Producto</th>
-		<th>Servicio</th>
+		<th>Nombre</th>
+		<th>Costo</th>
 		<th>Modificar</th>
 		<th>Eliminar</th>
 	</tr>
@@ -27,7 +24,7 @@
 	
 	<!-- LINK ACTUALIZAR REGISTRO -->
 	<!-- var tiene que coincidir con href de <a> -->
-	<c:url var="linkActualizar" value="/servicio/muestraFormularioActualizarPedido">
+	<c:url var="linkActualizar" value="/pedido/muestraFormularioActualizarPedido">
 	
 		<!-- Para pasarle a "value" el ID del registro a modificar -->
 		<c:param name="idPedido" value="${pedidoTemp.idPedido }"/>
@@ -37,7 +34,7 @@
 	
 	<!-- LINK ELIMINAR REGISTRO -->
 	<!-- var tiene que coincidir con href de <a> -->
-	<c:url var="linkEliminar" value="/servicio/eliminarPedido">
+	<c:url var="linkEliminar" value="/pedido/eliminarPedido">
 	
 		<!-- Para pasarle a "value" el ID del registro a modificar -->
 		<c:param name="idPedido" value="${pedidoTemp.idPedido }"/>
@@ -46,9 +43,8 @@
 	<!-- ---------------------- -->
 	
 	<tr>
-		<td>${pedidoTemp.costoTotal }</td>
-		<td>${pedidoTemp.pedido }</td>
-		<td>${pedidoTemp.cliente }</td>
+		<td>${pedidoTemp.fechaPedido }</td>
+		<td>${pedidoTemp.montoPedido }</td>
 		<td><a href="${linkActualizar }"><input type="button" value="Modificar"/></a></td> <!-- Lo traemos a cada registro de la BBDD por ID -->
 		<td><a href="${linkEliminar }"><input type="button" value="Eliminar" onclick="if(!(confirm('¡¡Atención!! Estas por eliminar un registro ¿Estas seguro?'))) return false"/></a></td>
 	

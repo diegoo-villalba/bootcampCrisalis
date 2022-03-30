@@ -61,5 +61,6 @@
 <input type="button" value="Agregar Cliente" onclick="window.location.href='formularioAgregarCliente'; return false;">
 
 
+
 </body>
 </html>

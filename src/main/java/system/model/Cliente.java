@@ -1,6 +1,16 @@
 package system.model;
 
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
@@ -19,7 +29,14 @@ public class Cliente {
 
 	@Column(name = "dni")
 	private int dni;
-
+	
+	@OneToMany(mappedBy="cliente", cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	
+	private List<Pedido> pedidos;
+	
+	
+	//----------------CONSTRUCTORES--------------------
+	
 	public Cliente() {
 
 	}
@@ -59,6 +76,19 @@ public class Cliente {
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + "]";
+	}
+	
+	public void agregarPedidos(Pedido unPedido) {
+		//Si la lista de pedidos no existe, instanciamos una
+		if(pedidos==null) {
+			pedidos = new ArrayList<>();
+			
+			//Anadimos el pedido a la lista de pedidos
+			pedidos.add(unPedido);
+			
+			//Establecemos el cliente que realiza el pedido ("this")
+			unPedido.setCliente(this);
+		}
 	}
 
 }

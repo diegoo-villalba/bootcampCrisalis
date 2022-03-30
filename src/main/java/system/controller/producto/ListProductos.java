@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import system.model.Cliente;
 import system.model.Producto;
 import system.persistence.ProductoDAO;
 
