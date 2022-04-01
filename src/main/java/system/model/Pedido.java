@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Table(name="pedido")
 public class Pedido {
@@ -27,7 +29,7 @@ public class Pedido {
 	@Column(name = "montoPedido")
 	private Double montoPedido;
 	
-	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idCliente")
 	private Cliente cliente;
 	
@@ -39,6 +41,15 @@ public class Pedido {
 	
 	public Pedido(GregorianCalendar fechaPedido) {
 		this.fechaPedido = fechaPedido;
+	}
+	
+	public Pedido(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	public Pedido(GregorianCalendar fechaPedido, Cliente cliente) {
+		this.fechaPedido = fechaPedido;
+		this.cliente = cliente;
 	}
 
 	
@@ -76,6 +87,12 @@ public class Pedido {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [idPedido=" + idPedido + ", fechaPedido=" + fechaPedido + ", montoPedido=" + montoPedido
+				+ ", cliente=" + cliente + "]";
 	}
 	
 }

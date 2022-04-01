@@ -30,15 +30,20 @@ public class Cliente {
 	@Column(name = "dni")
 	private int dni;
 	
-	@OneToMany(mappedBy="cliente", cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	
-	private List<Pedido> pedidos;
+	@OneToMany(mappedBy="cliente", orphanRemoval = true)
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	
 	//----------------CONSTRUCTORES--------------------
 	
 	public Cliente() {
 
+	}
+	
+	public Cliente(String nombre, String apellido, int dni) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
 	}
 
 	public String getNombre() {
@@ -80,8 +85,7 @@ public class Cliente {
 	
 	public void agregarPedidos(Pedido unPedido) {
 		//Si la lista de pedidos no existe, instanciamos una
-		if(pedidos==null) {
-			pedidos = new ArrayList<>();
+		if(pedidos==null) pedidos = new ArrayList<>();
 			
 			//Anadimos el pedido a la lista de pedidos
 			pedidos.add(unPedido);
@@ -89,6 +93,5 @@ public class Cliente {
 			//Establecemos el cliente que realiza el pedido ("this")
 			unPedido.setCliente(this);
 		}
-	}
 
 }

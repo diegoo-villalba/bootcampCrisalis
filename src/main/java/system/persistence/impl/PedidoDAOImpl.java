@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import system.model.Cliente;
 import system.model.Pedido;
+import system.persistence.ClienteDAO;
 import system.persistence.PedidoDAO;
 
 @Repository
@@ -21,7 +23,8 @@ public class PedidoDAOImpl implements PedidoDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	
+	@Autowired
+	private ClienteDAO clienteDAO;
 	
 	@Override
 	@Transactional //Anotacion que nos permite prescindir de crear la transaccion y hacer el commit y/o rollback
@@ -89,5 +92,22 @@ public class PedidoDAOImpl implements PedidoDAO {
 		query.executeUpdate();
 		
 	}
+
+	@Override
+	@Transactional
+	public void insertarClienteAlPedido(Cliente unCliente, Pedido unPedido) {
+		
+				Session mySession = sessionFactory.getCurrentSession();
+				
+				unCliente = mySession.get(Cliente.class, 2);
+				
+				unPedido = new Pedido(unCliente);
+				
+				//Insercion del registro
+				mySession.saveOrUpdate(unPedido);
+	}
+	
+	
+	
 
 }
